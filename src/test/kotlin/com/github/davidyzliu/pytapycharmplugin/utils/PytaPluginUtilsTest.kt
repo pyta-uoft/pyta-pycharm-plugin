@@ -104,7 +104,7 @@ internal class PytaPluginUtilsTest {
                 [
                     {
                         "filename": "$SAMPLE_FILE_ONE",
-                        "msgs": [$SAMPLE_MESSAGE_ONE_FILE_ONE]                    
+                        "msgs": [$SAMPLE_MESSAGE_ONE_FILE_ONE]
                     }
                 ]
             """
@@ -121,7 +121,7 @@ internal class PytaPluginUtilsTest {
                         "filename": "$SAMPLE_FILE_ONE",
                         "msgs": [$SAMPLE_MESSAGE_ONE_FILE_ONE, $SAMPLE_MESSAGE_ONE_FILE_TWO]
                     }
-               ] 
+               ]
             """
         val issues: List<PytaIssue> = PytaPluginUtils.parsePytaOutputString(samplePytaOutput)
 
@@ -142,7 +142,7 @@ internal class PytaPluginUtilsTest {
                         "filename": "$SAMPLE_FILE_TWO",
                         "msgs": [$SAMPLE_MESSAGE_ONE_FILE_TWO]
                     }
-               ] 
+               ]
             """
         val issues: List<PytaIssue> = PytaPluginUtils.parsePytaOutputString(samplePytaOutput)
 
