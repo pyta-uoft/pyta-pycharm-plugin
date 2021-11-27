@@ -3,30 +3,29 @@ package com.github.davidyzliu.pytapycharmplugin.services
 import com.intellij.openapi.project.Project
 import com.github.davidyzliu.pytapycharmplugin.MyBundle
 import com.intellij.openapi.roots.ProjectRootManager
-import com.intellij.openapi.vfs.LocalFileSystem
 
+/**
+ * The Project Service (singleton) used to contain and maintain the Python SDK Path selected for the plugin's use.
+ *
+ * @property selectedPythonSDKPath the Python SDK path the user has set to be used
+ * @constructor detects and uses the path of the default project SDK
+ */
 class MyProjectService(project: Project) {
 
-    private val PYTHON_TA_FILE_NAME: String = "python_ta.exe"
-
-    private var pythonTAExecutablePath: String = ""
+    private var selectedPythonSDKPath: String = ""
 
     init {
         val sdk = ProjectRootManager.getInstance(project).projectSdk
-        val sdkExe = LocalFileSystem.getInstance().findFileByPath(sdk?.homePath.toString())
-        if (sdkExe != null) {
-            val pytaExe = sdkExe.parent.findChild(PYTHON_TA_FILE_NAME)
-            if (pytaExe != null)
-                pythonTAExecutablePath = pytaExe.path
-        }
+        if (sdk != null)
+            selectedPythonSDKPath = sdk.homePath.toString();
     }
 
-    fun getPythonTAPath(): String {
-        return pythonTAExecutablePath
+    fun getPythonSDKPath(): String {
+        return selectedPythonSDKPath
     }
 
-    fun setPythonTAPath(value: String) {
-        pythonTAExecutablePath = value
+    fun setPythonSDKPath(value: String) {
+        selectedPythonSDKPath = value
     }
 
     init {

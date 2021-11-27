@@ -7,15 +7,20 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.DialogPanel
 import com.intellij.ui.layout.panel
 
-
+/**
+ * Project Configurable using Kotlin DSL to create a new page in the Settings menu
+ *
+ * @property configService the Project service which contains the Project SDK path.
+ * @property pathFieldContent the property linked to the DSL field, delegating the setter and getter to [configService]
+ */
 class PythonTAConfigurable(_project: Project) : BoundSearchableConfigurable("PythonTA Plugin Settings", "base") {
 
     private var configService: MyProjectService = _project.service()
 
     var pathFieldContent: String
-        get() = configService.getPythonTAPath()
+        get() = configService.getPythonSDKPath()
         set(value) {
-            configService.setPythonTAPath(value)
+            configService.setPythonSDKPath(value)
         }
 
     override fun createPanel(): DialogPanel {
