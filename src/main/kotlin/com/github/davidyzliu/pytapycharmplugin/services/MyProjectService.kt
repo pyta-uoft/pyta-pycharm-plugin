@@ -1,7 +1,7 @@
 package com.github.davidyzliu.pytapycharmplugin.services
 
-import com.intellij.openapi.project.Project
 import com.github.davidyzliu.pytapycharmplugin.MyBundle
+import com.intellij.openapi.project.Project
 import com.intellij.openapi.roots.ProjectRootManager
 
 /**
@@ -17,7 +17,7 @@ class MyProjectService(project: Project) {
     init {
         val sdk = ProjectRootManager.getInstance(project).projectSdk
         if (sdk != null)
-            selectedPythonSDKPath = sdk.homePath.toString();
+            selectedPythonSDKPath = sdk.homePath.toString()
     }
 
     fun getPythonSDKPath(): String {

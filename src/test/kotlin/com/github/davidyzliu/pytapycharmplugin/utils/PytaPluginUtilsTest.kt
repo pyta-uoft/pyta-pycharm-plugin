@@ -41,7 +41,7 @@ internal class PytaPluginUtilsTest {
                 arrayOf(
                     PytaMessage(
                         "some-symbol", "This is a message", "convention",
-                        "sample_file_one.py", "some_module",1, 0
+                        "sample_file_one.py", "some_module", 1, 0
                     )
                 )
             )

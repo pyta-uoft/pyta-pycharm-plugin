@@ -25,6 +25,4 @@ class PytaPluginUtils private constructor () {
             return gson.fromJson(messageString, issueListType)
         }
     }
-
-
 }

@@ -23,9 +23,7 @@ data class PytaIssue(val filename: String, val msgs: Array<PytaMessage>) {
         result = 31 * result + msgs.contentHashCode()
         return result
     }
-
 }
-
 
 /**
  * Represents a single PyTA issue and containing information about the issue identified by PyTA with a file

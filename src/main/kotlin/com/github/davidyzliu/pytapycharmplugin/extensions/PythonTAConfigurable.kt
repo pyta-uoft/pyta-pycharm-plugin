@@ -37,5 +37,4 @@ class PythonTAConfigurable(_project: Project) : BoundSearchableConfigurable("Pyt
         }
         return settingsPagePanel
     }
-
 }
