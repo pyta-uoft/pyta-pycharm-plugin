@@ -10,6 +10,11 @@
         <applicationService serviceImplementation="com.github.davidyzliu.pytapycharmplugin.services.MyApplicationService"/>
         <projectService serviceImplementation="com.github.davidyzliu.pytapycharmplugin.services.MyProjectService"/>
         <projectConfigurable parentId="tools" instance="com.github.davidyzliu.pytapycharmplugin.extensions.PythonTAConfigurable"/>
+
+        <toolWindow id="PythonTA"
+                    factoryClass="com.github.davidyzliu.pytapycharmplugin.toolwindow.ReportToolWindowFactory"
+                    anchor="bottom"
+        />
     </extensions>
 
     <applicationListeners>
