@@ -1,1 +1,1 @@
-rootProject.name = "pyta-pycharm-plugin"
+rootProject.name = "PythonTA"

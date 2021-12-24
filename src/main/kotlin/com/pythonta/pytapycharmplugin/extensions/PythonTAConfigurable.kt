@@ -1,6 +1,5 @@
-package com.github.davidyzliu.pytapycharmplugin.extensions
+package com.pythonta.pytapycharmplugin.extensions
 
-import com.github.davidyzliu.pytapycharmplugin.services.MyProjectService
 import com.intellij.openapi.components.service
 import com.intellij.openapi.options.BoundSearchableConfigurable
 import com.intellij.openapi.project.Project
@@ -12,6 +11,7 @@ import com.intellij.ui.components.fields.ExtendableTextField
 import com.intellij.ui.layout.Row
 import com.intellij.ui.layout.ValidationInfoBuilder
 import com.intellij.ui.layout.panel
+import com.pythonta.pytapycharmplugin.services.MyProjectService
 import java.io.File
 import java.io.IOException
 import java.util.concurrent.TimeUnit
@@ -93,7 +93,9 @@ class PythonTAConfigurable(_project: Project) : BoundSearchableConfigurable("Pyt
         val pathProperties = analyzePath(pathFieldContent)
 
         val potentialSdk = pathProperties.any {
-                property -> property in listOf(PathProperties.IS_PYTHON_SDK, PathProperties.MAYBE_PYTHON_SDK)}
+            property ->
+            property in listOf(PathProperties.IS_PYTHON_SDK, PathProperties.MAYBE_PYTHON_SDK)
+        }
         // approach is dangerous as path MIGHT be an SDK, but it might be an irrelevant executable
         if (potentialSdk) {
             val builder = ProcessBuilder(pathFieldContent, "-m", "python_ta", "-h")
@@ -127,14 +129,15 @@ class PythonTAConfigurable(_project: Project) : BoundSearchableConfigurable("Pyt
         else if (pathProperties.contains(PathProperties.MAYBE_PYTHON_SDK))
             return validationBuilder.warning("File might not be a Python SDK")
         else if (pathProperties.contains(PathProperties.NOT_PYTHON_SDK))
-            return validationBuilder.error("File is not a Python SDK. If it should be," +
-                    "please rename it to follow the standard naming convention (file name starting with 'python')")
+            return validationBuilder.error(
+                "File is not a Python SDK. If it should be," +
+                    "please rename it to follow the standard naming convention (file name starting with 'python')"
+            )
         else if (pathProperties.contains(PathProperties.NOT_EXECUTABLE))
             return validationBuilder.error("File is not executable")
 
         return null
     }
-
 }
 
 /**
@@ -156,8 +159,7 @@ private fun analyzePath(path: String): Set<PathProperties> {
                 properties.add(PathProperties.MAYBE_PYTHON_SDK)
             else
                 properties.add(PathProperties.NOT_PYTHON_SDK)
-        }
-        else
+        } else
             properties.add(PathProperties.NOT_EXECUTABLE)
     }
 

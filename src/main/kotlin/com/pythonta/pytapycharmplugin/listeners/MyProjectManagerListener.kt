@@ -1,9 +1,9 @@
-package com.github.davidyzliu.pytapycharmplugin.listeners
+package com.pythonta.pytapycharmplugin.listeners
 
-import com.github.davidyzliu.pytapycharmplugin.services.MyProjectService
 import com.intellij.openapi.components.service
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.project.ProjectManagerListener
+import com.pythonta.pytapycharmplugin.services.MyProjectService
 
 internal class MyProjectManagerListener : ProjectManagerListener {
 

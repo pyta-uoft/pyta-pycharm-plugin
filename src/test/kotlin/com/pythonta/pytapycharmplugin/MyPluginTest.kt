@@ -1,4 +1,4 @@
-package com.github.davidyzliu.pytapycharmplugin
+package com.pythonta.pytapycharmplugin
 
 import com.intellij.ide.highlighter.XmlFileType
 import com.intellij.psi.xml.XmlFile

@@ -1,10 +1,5 @@
-package com.github.davidyzliu.pytapycharmplugin.actions
+package com.pythonta.pytapycharmplugin.actions
 
-import com.github.davidyzliu.pytapycharmplugin.services.MyProjectService
-import com.github.davidyzliu.pytapycharmplugin.toolwindow.ReportToolWindowFactory
-import com.github.davidyzliu.pytapycharmplugin.utils.PytaPluginUtils
-import com.github.davidyzliu.pytapycharmplugin.utils.ScanUtil
-import com.github.davidyzliu.pytapycharmplugin.utils.reporttoolwindow.ReportToolWindowPanel
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.PlatformDataKeys
@@ -16,7 +11,11 @@ import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.openapi.wm.ToolWindow
 import com.intellij.openapi.wm.ToolWindowManager
 import com.intellij.ui.content.ContentManager
-import org.jetbrains.annotations.NonNls
+import com.pythonta.pytapycharmplugin.services.MyProjectService
+import com.pythonta.pytapycharmplugin.toolwindow.ReportToolWindowFactory
+import com.pythonta.pytapycharmplugin.utils.PytaPluginUtils
+import com.pythonta.pytapycharmplugin.utils.ScanUtil
+import com.pythonta.pytapycharmplugin.utils.reporttoolwindow.ReportToolWindowPanel
 
 /**
  * Represents an IDE action in which a *single* file is scanned using PythonTA
@@ -31,7 +30,6 @@ class ScanFileAction : AnAction() {
     override fun actionPerformed(e: AnActionEvent) {
 
         var selectedFile: VirtualFile? = null
-        var selectedFilePath: @NonNls String? = null
 
         // Project guaranteed to exist because of update()
         val selectedProject: Project = PlatformDataKeys.PROJECT.getData(e.dataContext)!!
@@ -53,19 +51,16 @@ class ScanFileAction : AnAction() {
             selectedFile = FileDocumentManager.getInstance().getFile(selectedTextEditor.document)
         }
 
-        if (selectedFile != null) {
-            selectedFilePath = selectedFile.path
-        } else {
+        if (selectedFile == null) {
             // No need to add issues as selected file was null
             addContentToToolWindow(toolWindowContentManager, reportToolWindow)
             return
         }
 
-        if (selectedFilePath != null) {
-            val result: String = ScanUtil.scan(pythonSDKPath, selectedFilePath)
-            reportToolWindow.addIssuesToPanel(PytaPluginUtils.parsePytaOutputString(result))
-            addContentToToolWindow(toolWindowContentManager, reportToolWindow)
-        }
+        val selectedFilePath = selectedFile.path
+        val result: String = ScanUtil.scan(pythonSDKPath, selectedFilePath)
+        reportToolWindow.addIssuesToPanel(PytaPluginUtils.parsePytaOutputString(result))
+        addContentToToolWindow(toolWindowContentManager, reportToolWindow)
     }
 
     /**

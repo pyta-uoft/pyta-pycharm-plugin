@@ -1,6 +1,6 @@
 <!-- Keep a Changelog guide -> https://keepachangelog.com -->
 
-# pyta-pycharm-plugin Changelog
+# PythonTA PyCharm Plugin Changelog
 
 ## [Unreleased]
 ### Added

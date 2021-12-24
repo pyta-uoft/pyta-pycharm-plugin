@@ -1,4 +1,4 @@
-package com.github.davidyzliu.pytapycharmplugin.utils
+package com.pythonta.pytapycharmplugin.utils
 
 import java.io.BufferedReader
 import java.io.IOException

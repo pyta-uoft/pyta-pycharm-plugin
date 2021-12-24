@@ -1,37 +1,76 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
-<idea-plugin>
-    <id>com.github.davidyzliu.pytapycharmplugin</id>
-    <name>pyta-pycharm-plugin</name>
-    <vendor>david-yz-liu</vendor>
+<!-- An optional `url` attribute specifies the link to the plugin homepage. Displayed on the Plugin Page. -->
+<idea-plugin url="https://github.com/pyta-uoft/pyta-pycharm-plugin">
+  <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions.
+       If not specified, <name> will be used (not recommended). -->
+  <id>com.pythonta.pytapycharmplugin</id>
 
-    <depends>com.intellij.modules.platform</depends>
+  <!-- Public plugin name should be written in Title Case.
+       Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+  <name>PythonTA</name>
 
-    <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.davidyzliu.pytapycharmplugin.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.davidyzliu.pytapycharmplugin.services.MyProjectService"/>
-        <projectConfigurable parentId="tools" instance="com.github.davidyzliu.pytapycharmplugin.extensions.PythonTAConfigurable"/>
+  <!-- A displayed Vendor name or Organization ID (if you have one created. The optional `URL` attribute specifies
+       the link to the vendor’s homepage. The optional `email` attribute specifies the vendor’s e-mail address.
+       Displayed on the Plugins Page. -->
+  <vendor url="https://github.com/pyta-uoft/pyta">David Liu</vendor>
 
-        <toolWindow id="PythonTA"
-                    factoryClass="com.github.davidyzliu.pytapycharmplugin.toolwindow.ReportToolWindowFactory"
-                    anchor="bottom"
-        />
-    </extensions>
+  <!-- IMPORTANT: This tag should not be used in case of free plugins.
+       If you decide to make your plugin paid, you will need to define the parameters in the <product-descriptor> tag.
+       You can also enable free functionality in a paid plugin. Learn more in a guide to selling plugin:
+       https://plugins.jetbrains.com/build-and-market -->
+  <!-- product-descriptor code="PLUGINTEMPLATE" release-date="20210901" release-version="20211" optional="true"/ -->
 
-    <applicationListeners>
-        <listener class="com.github.davidyzliu.pytapycharmplugin.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
+  <!-- Product and plugin compatibility requirements.
+       Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+  <depends>com.intellij.modules.platform</depends>
 
-    <actions>
-        <action class="com.github.davidyzliu.pytapycharmplugin.actions.ScanFileAction"
-                description="Perform a PythonTA scan on current file"
-                icon="AllIcons.Actions.Execute"
-                id="pyta_scan_file_action"
-                text="Scan File with PythonTA">
-            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
-            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
-            <add-to-group group-id="CodeMenu" anchor="last" />
-        </action>
-    </actions>
+  <!-- Resource bundle (/messages/MyPluginBundle.properties) to be used with `key` attributes in extension points
+       and implicit keys like `action.[ActionID].text|description`. -->
+  <!-- resource-bundle>messages.MyPluginBundle</resource-bundle -->
 
+  <!-- Extension points defined by the plugin. Extension points are registered by a plugin so that other plugins can
+       provide this plugin with certain data.
+       Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+  <!--extensionPoints>
+    <extensionPoint name="testExtensionPoint" beanClass="com.foo.impl.MyExtensionBean"/>
+    <applicationService serviceImplementation="com.foo.impl.MyApplicationService"/>
+    <projectService serviceImplementation="com.foo.impl.MyProjectService"/>
+  </extensionPoints -->
+
+  <!-- Application-level listeners, see: https://plugins.jetbrains.com/docs/intellij/plugin-listeners.html#defining-application-level-listeners -->
+  <applicationListeners>
+    <listener class="com.pythonta.pytapycharmplugin.listeners.MyProjectManagerListener"
+              topic="com.intellij.openapi.project.ProjectManagerListener"/>
+  </applicationListeners>
+
+  <!-- Project-level listeners, see: https://plugins.jetbrains.com/docs/intellij/plugin-listeners.html#defining-project-level-listeners -->
+  <!--projectListeners>
+    <listener class="com.foo.impl.MyToolwindowListener" topic="com.intellij.openapi.wm.ex.ToolWindowManagerListener"/>
+  </projectListeners -->
+
+  <!-- Actions, see: https://plugins.jetbrains.com/docs/intellij/basic-action-system.html -->
+  <actions>
+    <action class="com.pythonta.pytapycharmplugin.actions.ScanFileAction"
+            description="Perform a PythonTA scan on current file"
+            icon="AllIcons.Actions.Execute"
+            id="pyta_scan_file_action"
+            text="Scan File with PythonTA">
+      <!-- keyboard-shortcut first-keystroke="control alt G" second-keystroke="C" keymap="$default"/ -->
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+      <add-to-group group-id="CodeMenu" anchor="last" />
+    </action>
+  </actions>
+
+  <!-- Custom extensions declaration. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extensions.html#declaring-extensions -->
+  <extensions defaultExtensionNs="com.intellij">
+    <applicationService serviceImplementation="com.pythonta.pytapycharmplugin.services.MyApplicationService"/>
+    <projectService serviceImplementation="com.pythonta.pytapycharmplugin.services.MyProjectService"/>
+    <projectConfigurable parentId="tools" instance="com.pythonta.pytapycharmplugin.extensions.PythonTAConfigurable"/>
+
+    <toolWindow id="PythonTA"
+                factoryClass="com.pythonta.pytapycharmplugin.toolwindow.ReportToolWindowFactory"
+                anchor="bottom"
+    />
+  </extensions>
 </idea-plugin>
