@@ -35,7 +35,7 @@ class ScanFileAction : AnAction() {
 
         // Project guaranteed to exist because of update()
         val selectedProject: Project = PlatformDataKeys.PROJECT.getData(e.dataContext)!!
-        val pytaPath: String = selectedProject.service<MyProjectService>().getPythonSDKPath()
+        val pythonSDKPath: String = selectedProject.service<MyProjectService>().getPythonSDKPath()
 
         val toolWindow: ToolWindow = ToolWindowManager
             .getInstance(selectedProject)
@@ -62,7 +62,7 @@ class ScanFileAction : AnAction() {
         }
 
         if (selectedFilePath != null) {
-            val result: String = ScanUtil.scan(pytaPath, selectedFilePath)
+            val result: String = ScanUtil.scan(pythonSDKPath, selectedFilePath)
             reportToolWindow.addIssuesToPanel(PytaPluginUtils.parsePytaOutputString(result))
             addContentToToolWindow(toolWindowContentManager, reportToolWindow)
         }
