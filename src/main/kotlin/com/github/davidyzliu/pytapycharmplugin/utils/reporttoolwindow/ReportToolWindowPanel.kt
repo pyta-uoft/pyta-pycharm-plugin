@@ -3,8 +3,9 @@ package com.github.davidyzliu.pytapycharmplugin.utils.reporttoolwindow
 import com.github.davidyzliu.pytapycharmplugin.utils.PytaIssue
 import com.github.davidyzliu.pytapycharmplugin.utils.PytaMessage
 import com.intellij.openapi.ui.DialogPanel
-import com.intellij.ui.layout.panel
+import com.intellij.ui.components.JBScrollPane
 import com.intellij.ui.treeStructure.Tree
+import java.awt.BorderLayout
 import javax.swing.tree.MutableTreeNode
 
 /**
@@ -15,10 +16,12 @@ import javax.swing.tree.MutableTreeNode
  * displayed to the user.
  * **/
 class ReportToolWindowPanel {
-    var toolWindowPanel: DialogPanel = panel {
-        row {
-            root("No report loaded...")()
-        }
+    var toolWindowPanel: DialogPanel = DialogPanel(BorderLayout())
+
+    init {
+        toolWindowPanel.add(
+            JBScrollPane(root("No report loaded..."))
+        )
     }
 
     /**
@@ -28,7 +31,8 @@ class ReportToolWindowPanel {
      * **/
     fun addIssuesToPanel(issues: List<PytaIssue>) {
         toolWindowPanel.removeAll()
-        toolWindowPanel.add(getParsedTree(issues))
+        toolWindowPanel.add(
+            JBScrollPane(getParsedTree(issues)))
     }
 
     /*
