@@ -1,4 +1,4 @@
-package com.github.davidyzliu.pytapycharmplugin
+package com.pythonta.pytapycharmplugin
 
 import com.intellij.DynamicBundle
 import org.jetbrains.annotations.NonNls

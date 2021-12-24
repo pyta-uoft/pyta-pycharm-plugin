@@ -1,10 +1,10 @@
-package com.github.davidyzliu.pytapycharmplugin.toolwindow
+package com.pythonta.pytapycharmplugin.toolwindow
 
-import com.github.davidyzliu.pytapycharmplugin.utils.reporttoolwindow.ReportToolWindowPanel
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.wm.ToolWindow
 import com.intellij.openapi.wm.ToolWindowFactory
 import com.intellij.ui.content.ContentFactory
+import com.pythonta.pytapycharmplugin.utils.reporttoolwindow.ReportToolWindowPanel
 
 /**
  * Responsible for creating the custom tool window which displays the results of PythonTA

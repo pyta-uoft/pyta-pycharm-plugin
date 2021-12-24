@@ -1,4 +1,4 @@
-package com.github.davidyzliu.pytapycharmplugin.utils
+package com.pythonta.pytapycharmplugin.utils
 
 /**
  * Represents all issues identified by PyTA with a given file

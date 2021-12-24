@@ -1,4 +1,4 @@
-package com.github.davidyzliu.pytapycharmplugin.utils.reporttoolwindow
+package com.pythonta.pytapycharmplugin.utils.reporttoolwindow
 
 import com.intellij.ui.treeStructure.Tree
 import javax.swing.tree.DefaultMutableTreeNode

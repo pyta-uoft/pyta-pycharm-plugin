@@ -1,4 +1,4 @@
-package com.github.davidyzliu.pytapycharmplugin.services
+package com.pythonta.pytapycharmplugin.services
 
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.roots.ProjectRootManager

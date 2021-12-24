@@ -7,9 +7,9 @@
 <!-- Plugin description -->
 <!-- This specific section is a source for the [plugin.xml](/src/main/resources/META-INF/plugin.xml) file which will be extracted by the [Gradle](/build.gradle.kts) during the build process. -->
 <!-- To keep everything working, do not remove this section. -->
+<!-- Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
 
-This plugin provides the features of [PyTA](https://github.com/pyta-uoft/pyta) in your Pycharm editor! Currently, it allows you to perform a PyTA scan on a
-python file to determine some common coding errors.
+This plugin provides the features of [PythonTA](https://github.com/pyta-uoft/pyta) in your PyCharm editor!
 
 <!-- Plugin description end -->
 ## Development

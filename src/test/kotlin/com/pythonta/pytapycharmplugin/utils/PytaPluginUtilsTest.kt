@@ -1,4 +1,4 @@
-package com.github.davidyzliu.pytapycharmplugin.utils
+package com.pythonta.pytapycharmplugin.utils
 
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals

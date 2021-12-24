@@ -28,6 +28,7 @@ repositories {
 
 dependencies {
     implementation("org.junit.jupiter:junit-jupiter:5.7.0")
+    testImplementation(kotlin("test"))
 }
 
 // Do not accept publishing of build scan results. Can be changed to "yes" if needed in the future.
@@ -107,6 +108,7 @@ tasks {
         )
 
         // Get the latest available change notes from the changelog file
+        // Displayed on the Plugin Page and IDE Plugin Manager.
         changeNotes.set(
             provider {
                 changelog.run {

@@ -1,4 +1,4 @@
-package com.github.davidyzliu.pytapycharmplugin.utils
+package com.pythonta.pytapycharmplugin.utils
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -22,6 +22,7 @@ class PytaPluginUtils private constructor () {
         fun parsePytaOutputString(messageString: String): List<PytaIssue> {
             val gson = Gson()
             val issueListType: Type = object : TypeToken<List<PytaIssue>>() {}.type
+            println(messageString)
             return gson.fromJson(messageString, issueListType)
         }
     }
