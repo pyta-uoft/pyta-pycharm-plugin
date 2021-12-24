@@ -13,14 +13,14 @@ object ScanUtil {
     /**
      * Performs a scan on the provided file and returns a string representing the JSON
      * object that contains the results of the scan.
-     * @param pytaPath Path to PythonTA executable
+     * @param pythonSDKPath Path to PythonTA executable
      * @param filePath The path of the file to be scanned
      * @return A string represneting the JSON object containing results of the scan
      * @throws IOException
      * */
     @Throws(IOException::class)
-    fun scan(pytaPath: String, filePath: String): String {
-        val builder = ProcessBuilder(pytaPath, filePath, "--output-format", "python_ta.reporters.JSONReporter")
+    fun scan(pythonSDKPath: String, filePath: String): String {
+        val builder = ProcessBuilder(pythonSDKPath, "-m", "python_ta", filePath, "--output-format", "python_ta.reporters.JSONReporter")
         var p: Process? = null
         try {
             p = builder.start()
