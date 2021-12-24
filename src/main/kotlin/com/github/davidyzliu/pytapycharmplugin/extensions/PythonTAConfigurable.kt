@@ -42,7 +42,7 @@ class PythonTAConfigurable(_project: Project) : BoundSearchableConfigurable("Pyt
         val settingsPagePanel = panel {
             titledRow("PythonTA Plugin Configuration") {
                 row {
-                    label("PythonTA Installation Folder")
+                    label("Python SDK Installation Location")
                 }
                 row {
                     buildTextField(this)
