@@ -1,48 +1,25 @@
 package com.github.davidyzliu.pytapycharmplugin.utils.reporttoolwindow
 
+import com.intellij.ui.treeStructure.Tree
 import javax.swing.tree.DefaultMutableTreeNode
+import javax.swing.tree.MutableTreeNode
 
 /**
- * Responsible for creating leaf and non-leaf nodes in a DefaultMutableTreeNode tree.
+ * Base declarative builder to start the building process.
+ */
+fun root(rootContent: String, init: MutableTreeNode.() -> Unit = {}): Tree {
+    val rootNode = DefaultMutableTreeNode(rootContent)
+    rootNode.apply(init)
+    return Tree(rootNode)
+}
+
+/**
+ * Declarative MutableTreeNode builder which supports creating nested children in the init expression
+ * @param content The displayed content of the node
+ * @param init The expression containing additional creation-time operations, primarily nested builders
  * **/
-class NodeBuilder(nodeContent: String, init: NodeBuilder.() -> Unit) : Builder {
-
-    private var root: DefaultMutableTreeNode = DefaultMutableTreeNode(nodeContent)
-
-    init {
-        init()
-    }
-
-    /*
-    * Adds a buildable entity to the root of the tree represented by this NodeBuilder
-    * */
-    private fun add(buildable: Builder) {
-        root.add(buildable.build())
-    }
-
-    /**
-     * Returns the root of the tree that has been constructed.
-     * @return The root of the tree
-     * **/
-    override fun build(): DefaultMutableTreeNode {
-        return root
-    }
-
-    /*
-    * Adds a leaf node to the root of the tree represented by this NodeBuilder
-    * */
-    fun leaf(content: String) {
-        add(LeafBuilder(content))
-    }
-
-    /**
-     * Creates and adds a node with the provided content to the root of the tree represented
-     * by this NodeBuilder
-     * @param content The content of the node to be added
-     * @param init The initialization function
-     * **/
-    fun node(content: String, init: NodeBuilder.() -> Unit) {
-        val node = NodeBuilder(content, init)
-        add(node)
-    }
+fun MutableTreeNode.node(content: String, init: MutableTreeNode.() -> Unit = {}) {
+    val node = DefaultMutableTreeNode(content)
+    node.apply(init)
+    insert(node, childCount)
 }
