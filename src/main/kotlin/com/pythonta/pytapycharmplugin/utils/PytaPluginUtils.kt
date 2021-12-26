@@ -22,7 +22,6 @@ class PytaPluginUtils private constructor () {
         fun parsePytaOutputString(messageString: String): List<PytaIssue> {
             val gson = Gson()
             val issueListType: Type = object : TypeToken<List<PytaIssue>>() {}.type
-            println(messageString)
             return gson.fromJson(messageString, issueListType)
         }
     }
