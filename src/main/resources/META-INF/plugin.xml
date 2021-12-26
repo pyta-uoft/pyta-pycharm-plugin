@@ -66,7 +66,12 @@
   <extensions defaultExtensionNs="com.intellij">
     <applicationService serviceImplementation="com.pythonta.pytapycharmplugin.services.MyApplicationService"/>
     <projectService serviceImplementation="com.pythonta.pytapycharmplugin.services.MyProjectService"/>
-    <projectConfigurable parentId="tools" instance="com.pythonta.pytapycharmplugin.extensions.PythonTAConfigurable"/>
+    <projectConfigurable id="com.pythonta.pytapycharmplugin.extensions.PythonTAConfigurable"
+                         parentId="tools"
+                         instance="com.pythonta.pytapycharmplugin.extensions.PythonTAConfigurable"
+                         displayName="PythonTA"
+                         nonDefaultProject="false"
+    />
 
     <toolWindow id="PythonTA"
                 factoryClass="com.pythonta.pytapycharmplugin.toolwindow.ReportToolWindowFactory"

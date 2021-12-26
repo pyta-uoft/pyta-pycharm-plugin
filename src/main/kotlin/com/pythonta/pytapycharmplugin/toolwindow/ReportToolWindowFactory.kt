@@ -3,8 +3,6 @@ package com.pythonta.pytapycharmplugin.toolwindow
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.wm.ToolWindow
 import com.intellij.openapi.wm.ToolWindowFactory
-import com.intellij.ui.content.ContentFactory
-import com.pythonta.pytapycharmplugin.utils.reporttoolwindow.ReportToolWindowPanel
 
 /**
  * Responsible for creating the custom tool window which displays the results of PythonTA
@@ -27,8 +25,6 @@ class ReportToolWindowFactory : ToolWindowFactory {
      * */
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
         val tw = ReportToolWindowPanel()
-        val contentFactory = ContentFactory.SERVICE.getInstance()
-        val content = contentFactory.createContent(tw.toolWindowPanel, "Scan Results", false)
-        toolWindow.contentManager.addContent(content)
+        toolWindow.contentManager.addContent(tw.content)
     }
 }

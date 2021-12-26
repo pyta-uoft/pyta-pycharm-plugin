@@ -1,10 +1,14 @@
-package com.pythonta.pytapycharmplugin.utils.reporttoolwindow
+package com.pythonta.pytapycharmplugin.toolwindow
 
 import com.intellij.openapi.ui.DialogPanel
 import com.intellij.ui.components.JBScrollPane
+import com.intellij.ui.content.Content
+import com.intellij.ui.content.ContentFactory
 import com.intellij.ui.treeStructure.Tree
 import com.pythonta.pytapycharmplugin.utils.PytaIssue
 import com.pythonta.pytapycharmplugin.utils.PytaMessage
+import com.pythonta.pytapycharmplugin.utils.reporttoolwindow.node
+import com.pythonta.pytapycharmplugin.utils.reporttoolwindow.root
 import java.awt.BorderLayout
 import javax.swing.tree.MutableTreeNode
 
@@ -15,34 +19,33 @@ import javax.swing.tree.MutableTreeNode
  * no file is selected or no scan has been performed, then an appropriate message is
  * displayed to the user.
  * **/
-class ReportToolWindowPanel {
-    var toolWindowPanel: DialogPanel = DialogPanel(BorderLayout())
+class ReportToolWindowPanel(var filename: String = "", var issues: List<PytaIssue> = emptyList()) {
+    val content: Content
+        get() {
+            val toolWindowPanel = DialogPanel(BorderLayout())
 
-    init {
-        toolWindowPanel.add(
-            JBScrollPane(root("No report loaded..."))
-        )
-    }
+            val title: String
+            if (filename === "") {
+                toolWindowPanel.add(
+                    JBScrollPane(root("Run PythonTA to display report"))
+                )
+                title = "About"
+            } else {
+                toolWindowPanel.add(JBScrollPane(getParsedTree(issues)))
+                title = "$filename PythonTA Report"
+            }
+
+            val contentFactory = ContentFactory.SERVICE.getInstance()
+            return contentFactory.createContent(toolWindowPanel, title, false)
+        }
 
     /**
-     * Changes the content of the panel to display the provided list of PythonTA issues,
-     * representing the results of a scan performed by the user
-     * @param issues A list of PythonTA issues which represent the problems identified by PythonTA
-     * **/
-    fun addIssuesToPanel(issues: List<PytaIssue>) {
-        toolWindowPanel.removeAll()
-        toolWindowPanel.add(
-            JBScrollPane(getParsedTree(issues))
-        )
-    }
-
-    /*
-    * Creates a tree from the list of PythonTA issues to display to the user in the
-    * Tool Window on the IDE.
-    * */
+     * Creates a tree from the list of PythonTA issues to display to the user in the
+     * Tool Window on the IDE.
+     * */
     private fun getParsedTree(issues: List<PytaIssue>): Tree {
 
-        return root("PyTA Report: report summary") {
+        return root("PythonTA Report Summary") {
             for (issue: PytaIssue in issues)
                 file(issue) {
                     error(issue.msgs)
